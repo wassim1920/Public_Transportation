@@ -1,10 +1,10 @@
-import "./searchItem.css";
+import "./searchItemTrain.css";
 
 const SearchItem = () => {
   return (
     <div className="searchItem">
       <img
-        src="https://thumbs.dreamstime.com/b/white-intercity-bus-rides-highway-271969260.jpg"
+        src="https://images.pexels.com/photos/1793503/pexels-photo-1793503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         alt=""
         className="siImg"
       />

@@ -1,13 +1,13 @@
-import "./list.css";
+import "./listMetro.css";
 import Navbar from "../../components/navbar/Navbar";
-import SearchItem from "../../components/searchItem/SearchItem";
+import SearchItemMetro from "../../components/searchItemMertro/SearchItemMetro";
 import { useState } from "react";
 import { DateRange } from "@mui/icons-material";
 import { format } from "date-fns";
 import { faBed, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const List = () => {
+const ListMetro = () => {
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
@@ -65,18 +65,18 @@ const List = () => {
       </div>
       <div className="listContainer">
         <div className="listWrapper">
-          <SearchItem />
-          <SearchItem />
-          <SearchItem />
-          <SearchItem />
-          <SearchItem />
-          <SearchItem />
-          <SearchItem />
-          <SearchItem />
+          <SearchItemMetro />
+          <SearchItemMetro />
+          <SearchItemMetro />
+          <SearchItemMetro />
+          <SearchItemMetro />
+          <SearchItemMetro />
+          <SearchItemMetro />
+          <SearchItemMetro />
         </div>
       </div>
     </div>
   );
 };
 
-export default List;
+export default ListMetro;

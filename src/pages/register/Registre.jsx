@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import axios from "axios";
 
-
 const Registre = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState("");
@@ -15,20 +14,20 @@ const Registre = () => {
 
   const handelClick = async (e) => {
     e.preventDefault();
-    
+
     let newUser;
-    
+
     if (file) {
       const data = new FormData();
       data.append("file", file);
       data.append("upload_preset", "upload");
-      
+
       try {
         const uploadRes = await axios.post(
           "https://api.cloudinary.com/v1_1/dhb7jpopr/image/upload",
           data
         );
-        
+
         const { public_id, url } = uploadRes.data;
         newUser = {
           username,
@@ -48,9 +47,12 @@ const Registre = () => {
         email,
       };
     }
-    
+
     try {
-      const res = await axios.post("https://booking-aku5.onrender.com/api/auth/registre", newUser);
+      const res = await axios.post(
+        "https://booking-aku5.onrender.com/api/auth/registre",
+        newUser
+      );
       console.log(res);
       navigate("/login");
     } catch (err) {
@@ -62,7 +64,7 @@ const Registre = () => {
     <div className="regitre">
       <header>
         <Link to={"/"} style={{ color: "inherit", textDecoration: "none" }}>
-          <h2>Booking</h2>
+          <h2>Transport.Tn</h2>
         </Link>
       </header>
       <h1 className="rCreate">Create Your Account</h1>

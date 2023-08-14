@@ -3,10 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./login.css";
 import axios from "axios";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faEnvelope , faMobile} from '@fortawesome/free-solid-svg-icons'
-
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faMobile } from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -14,10 +12,9 @@ const Login = () => {
     password: undefined,
   });
 
-    const { loading, error, dispatch } = useContext(AuthContext);
+  const { loading, error, dispatch } = useContext(AuthContext);
 
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -27,22 +24,22 @@ const Login = () => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
-      const res = await axios.post("https://booking-aku5.onrender.com/api/auth/login", credentials);
+      const res = await axios.post(
+        "https://booking-aku5.onrender.com/api/auth/login",
+        credentials
+      );
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-      navigate("/")
+      navigate("/");
     } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data })
+      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
   };
 
-
   return (
-    
     <div className="login">
-      
       <header>
         <Link to={"/"} style={{ color: "inherit", textDecoration: "none" }}>
-        <h2>Booking</h2>
+          <h2>Transport.Tn</h2>
         </Link>
       </header>
       <h3 className="signText">Sign in or create an account</h3>
@@ -53,7 +50,6 @@ const Login = () => {
           id="username"
           onChange={handleChange}
           className="loginInput"
-          
         />
         <input
           type="password"
@@ -61,28 +57,21 @@ const Login = () => {
           id="password"
           onChange={handleChange}
           className="loginInput"
-          
         />
         <button disabled={loading} onClick={handleClick} className="lButton">
           Login
         </button>
         <div className="rrtext">
-         <Link to={'/registre'}>create account</Link>
+          <Link to={"/register"}>create account</Link>
         </div>
         {error && <span>{error.message}</span>}
-        <p  className="logindesc">ou choisissez l'une de ces options</p>
-        <div className="icon">
-        <FontAwesomeIcon className="g-icon" icon={faEnvelope} />
-        <FontAwesomeIcon className="m-icon" icon={faMobile} />
-        </div>
-        <div className="contact">
-        <p className="logindesc">+216 74120 896</p>
-        </div>
         <div className="ft">
-        <p className="logindesc">By signing in or creating an account, you agree with our Terms & Conditions and Privacy Statement</p>
-        <p className="cr">All rights reserved.
-          Copyright – Booking.com™</p>
-          </div>
+          <p className="logindesc">
+            By signing in or creating an account, you agree with our Terms &
+            Conditions and Privacy Statement
+          </p>
+          <p className="cr">All rights reserved. Copyright – Transport.Tn™</p>
+        </div>
       </div>
     </div>
   );

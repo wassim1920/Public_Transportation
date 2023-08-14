@@ -1,19 +1,77 @@
-import { Link } from "react-router-dom"
-import "./navbar.css"
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import "./navbar.css";
+import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handelClick = () => {
+    navigate("/login");
+  };
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handelLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
   return (
     <div className="navbar">
       <div className="navContainer">
-        <span className="logo">Public Transportation</span>
-        <div className="navItems">
-          <Link to="/register"> <button className="navButton">Register</button></Link>
-          <Link to="/login"><button className="navButtonL">Login</button></Link>
-          
-        </div>
+        <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+          <span className="logo">Transport.Tn</span>
+        </Link>
+
+        {user && localStorage.getItem("user") ? (
+          <div className="User">
+            <Link to="/login" className="UserName">
+              {user.username}{" "}
+            </Link>
+            <div className="dropdown">
+              <FontAwesomeIcon icon={faCaretDown} onClick={handleToggle} />
+              {isOpen && (
+                <div className="dropdown-menu">
+                  <button className="dropdown-item" onClick={handelLogout}>
+                    Logout{" "}
+                  </button>
+                </div>
+              )}
+            </div>
+            {user.img ? (
+              <div>
+                <Link to="/setting">
+                  <img src={user.img} alt="img" className="userImg" />
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <img
+                  src="https://i.ibb.co/MBtjqXQ/no-avatar.gif"
+                  alt="img"
+                  className="userImg"
+                />
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="navItems">
+            <Link to="/register">
+              <button className="navButton">Register</button>
+            </Link>
+            <button className="navButtonL" onClick={handelClick}>
+              Login
+            </button>
+          </div>
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

@@ -4,7 +4,7 @@ import {
   faPerson,
   faBus,
   faTrainSubway,
-  faTrainTram
+  faTrainTram,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
@@ -25,11 +25,8 @@ const Header = ({ type }) => {
       key: "selection",
     },
   ]);
- 
 
   const navigate = useNavigate();
-
- 
 
   const handleSearch = () => {
     navigate("/hotels", { state: { destination, date } });
@@ -44,15 +41,15 @@ const Header = ({ type }) => {
       >
         <div className="headerList">
           <div className="headerListItem">
-          <FontAwesomeIcon icon={faBus} />
+            <FontAwesomeIcon icon={faBus} />
             <span>Bus</span>
           </div>
           <div className="headerListItem">
-          <FontAwesomeIcon icon={faTrainTram} />
+            <FontAwesomeIcon icon={faTrainTram} />
             <span>Metro</span>
           </div>
           <div className="headerListItem">
-          <FontAwesomeIcon icon={faTrainSubway} />
+            <FontAwesomeIcon icon={faTrainSubway} />
             <span>train</span>
           </div>
         </div>
@@ -70,17 +67,16 @@ const Header = ({ type }) => {
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
                 <input
                   type="text"
-                  placeholder="Your position ..."
+                  placeholder="From? "
                   className="headerSearchInput"
                   onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
-                                                              {/* <div /////////////////////// </div> */}
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
                 <input
                   type="text"
-                  placeholder="Your position ..."
+                  placeholder="To?"
                   className="headerSearchInput"
                   onChange={(e) => setDestination(e.target.value)}
                 />
@@ -105,7 +101,7 @@ const Header = ({ type }) => {
                   />
                 )}
               </div>
-              
+
               <div className="headerSearchItem">
                 <button className="headerBtn" onClick={handleSearch}>
                   Search

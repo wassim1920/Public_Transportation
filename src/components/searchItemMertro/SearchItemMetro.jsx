@@ -1,10 +1,10 @@
-import "./searchItem.css";
+import "./searchItemMetro.css";
 
-const SearchItem = () => {
+const SearchItemMetro = () => {
   return (
     <div className="searchItem">
       <img
-        src="https://thumbs.dreamstime.com/b/white-intercity-bus-rides-highway-271969260.jpg"
+        src="https://images.pexels.com/photos/2275288/pexels-photo-2275288.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         alt=""
         className="siImg"
       />
@@ -32,4 +32,4 @@ const SearchItem = () => {
   );
 };
 
-export default SearchItem;
+export default SearchItemMetro;
