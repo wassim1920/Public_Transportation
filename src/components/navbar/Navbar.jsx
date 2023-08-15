@@ -34,36 +34,32 @@ const Navbar = () => {
               {user.username}{" "}
             </Link>
             <div className="user-container">
-            <div className="dropdown">
-              <FontAwesomeIcon icon={faCaretDown} onClick={handleToggle} />
-              {isOpen && (
-                <div className="dropdown-menu">
-                  <button className="dropdown-item" onClick={handelLogout}>
-                    Logout{" "}
-                  </button>
-                </div>
-              )}
+              <div className="dropdown">
+                <FontAwesomeIcon icon={faCaretDown} onClick={handleToggle} />
+                {isOpen && (
+                  <div className="dropdown-menu">
+                    <button className="dropdown-item" onClick={handelLogout}>
+                      Logout{" "}
+                    </button>
+                  </div>
+                )}
+              </div>
+              <Link to="/setting">
+                {user.img ? (
+                  <div>
+                    <img src={user.img} alt="img" className="userImg" />
+                  </div>
+                ) : (
+                  <div>
+                    <img
+                      src="https://i.ibb.co/MBtjqXQ/no-avatar.gif"
+                      alt="img"
+                      className="userImg"
+                    />
+                  </div>
+                )}
+              </Link>
             </div>
-            <Link to="/setting">
-            {user.img ? (
-             
-              <div>
-               
-                  <img src={user.img} alt="img" className="userImg" />
-                  
-              </div>
-             
-            ) : (
-              <div>
-                <img 
-                  src="https://i.ibb.co/MBtjqXQ/no-avatar.gif"
-                  alt="img"
-                  className="userImg"
-                />
-              </div>
-            )}
-             </Link>
-          </div>
           </div>
         ) : (
           <div className="navItems">

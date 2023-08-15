@@ -1,7 +1,6 @@
 import {
   faBed,
   faCalendarDays,
-  faPerson,
   faBus,
   faTrainSubway,
   faTrainTram,
@@ -9,27 +8,28 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
 import { DateRange } from "react-date-range";
-import { useState } from "react";
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css"; // theme css file
-import { format } from "date-fns";
+import { useContext, useState } from "react";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import TimePicker from "react-time-picker";
+import "react-time-picker/dist/TimePicker.css";
 
 const Header = ({ type }) => {
+  const { user } = useContext(AuthContext);
+  const [openSearch, setsearch] = useState(false);
   const [destination, setDestination] = useState("");
-  const [openDate, setOpenDate] = useState(false);
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
+  const [selectedTime, setSelectedTime] = useState("00:00");
 
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    navigate("/hotels", { state: { destination, date } });
+    if (user) {
+      setsearch(true);
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -60,7 +60,7 @@ const Header = ({ type }) => {
             </h1>
             <p className="headerDesc">
               Get rewarded for your travels – unlock instant savings of 10% or
-              more with a free Lamabooking account
+              more with a free Transport account
             </p>
             <div className="headerSearch">
               <div className="headerSearchItem">
@@ -81,27 +81,16 @@ const Header = ({ type }) => {
                   onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
-              <div className="headerSearchItem">
-                <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
-                <span
-                  onClick={() => setOpenDate(!openDate)}
-                  className="headerSearchText"
-                >{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
-                  date[0].endDate,
-                  "MM/dd/yyyy"
-                )}`}</span>
-                {openDate && (
-                  <DateRange
-                    editableDateInputs={true}
-                    onChange={(item) => setDate([item.selection])}
-                    moveRangeOnFirstSelection={false}
-                    ranges={date}
-                    className="date"
-                    minDate={new Date()}
-                  />
-                )}
+              <div className="ListsSearchItem">
+                <TimePicker
+                  onChange={setSelectedTime}
+                  value={selectedTime}
+                  format="HH:mm"
+                  disableClock={true}
+                  clearIcon={null}
+                  className="time"
+                />
               </div>
-
               <div className="headerSearchItem">
                 <button className="headerBtn" onClick={handleSearch}>
                   Search
