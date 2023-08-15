@@ -1,26 +1,33 @@
 import "./listTrain.css";
 import Navbar from "../../components/navbar/Navbar";
 import SearchItemTrain from "../../components/searchItemTrain/SearchItemTrain";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { DateRange } from "@mui/icons-material";
 import { format } from "date-fns";
-import { faBed, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { faBed, faCalendarDays, faPlug } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import TimePicker from "react-time-picker"; 
+import "react-time-picker/dist/TimePicker.css";
+import { AuthContext } from "../../context/AuthContext";
 
 const ListTrain = () => {
+  const {user}=useContext(AuthContext); 
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
+  const [selectedTime, setSelectedTime] = useState("00:00");
+  const isAdmin = user && user.role === "true";
+ 
   return (
     <div>
       <Navbar />
       <div className="ListsSearch">
+      <div className="ListsSearchItem">
+          {isAdmin && (
+            <button className="ListsBtn">
+              <FontAwesomeIcon icon={faPlug} className="ListsIcon" />
+            </button>
+          )}
+        </div>
         <div className="ListsSearchItem">
           <FontAwesomeIcon icon={faBed} className="ListsIcon" />
           <input
@@ -39,26 +46,14 @@ const ListTrain = () => {
             onChange={(e) => setDestination(e.target.value)}
           />
         </div>
-        <div className="ListsSearchItem">
-          <FontAwesomeIcon icon={faCalendarDays} className="ListsIcon" />
-          <span
-            onClick={() => setOpenDate(!openDate)}
-            className="ListsSearchText"
-          >{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
-            date[0].endDate,
-            "MM/dd/yyyy"
-          )}`}</span>
-          {openDate && (
-            <DateRange
-              editableDateInputs={true}
-              onChange={(item) => setDate([item.selection])}
-              moveRangeOnFirstSelection={false}
-              ranges={date}
-              className="date"
-              minDate={new Date()}
-            />
-          )}
-        </div>
+        
+        <TimePicker
+          onChange={setSelectedTime}
+          value={selectedTime}
+          disableClock={true} 
+          format="HH:mm"
+          clearIcon={null} 
+        />
         <div className="ListsSearchItem">
           <button className="ListsBtn">Search</button>
         </div>

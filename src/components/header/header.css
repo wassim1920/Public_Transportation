@@ -13,7 +13,9 @@
   display: flex;
   justify-content: center;
 }
-
+.time{
+  color: black;
+}
 .headerContainer {
   width: 100%;
   max-width: 1024px;

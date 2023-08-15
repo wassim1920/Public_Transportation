@@ -1,7 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./featured.css";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const Featured = () => {
+  const {user}= useContext(AuthContext);
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate()
+
+  const handleClick = ()=>{
+    if(user){
+      setOpen(true)
+    }else{
+      navigate("/login")
+    }
+  }
+
+
   return (
     <div className="featured">
       <li>
@@ -12,8 +27,8 @@ const Featured = () => {
         Get rewarded for your travels – unlock instant savings of 10% or more
         with a free Lamabooking account
       </h6>
-      <Link to="/list">
-        <div className="featuredItem">
+      
+        <div className="featuredItem" onClick={handleClick}>
           <img
             src="https://thumbs.dreamstime.com/b/white-intercity-bus-rides-highway-271969260.jpg"
             alt=""
@@ -21,16 +36,16 @@ const Featured = () => {
           />
           <div className="featuredTitles">
             <h1>Bus</h1>
-            <h2>+ 123</h2>
+            <h2 className="Fnum">+ 123</h2>
           </div>
         </div>
-      </Link>
+      
       <h6>
         Get rewarded for your travels – unlock instant savings of 10% or more
         with a free Lamabooking account
       </h6>
-      <Link to="/listMetro">
-        <div className="featuredItem">
+      
+        <div className="featuredItem" onClick={handleClick}>
           <img
             src="https://images.pexels.com/photos/2275288/pexels-photo-2275288.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             alt=""
@@ -38,27 +53,29 @@ const Featured = () => {
           />
           <div className="featuredTitles">
             <h1>Metro</h1>
-            <h2>+ 533</h2>
+            <h2 className="Fnum">+ 533</h2>
           </div>
         </div>
-      </Link>
+     
       <h6>
         Get rewarded for your travels – unlock instant savings of 10% or more
         with a free Lamabooking account
       </h6>
-      <Link to="/listTrain">
-        <div className="featuredItem">
+      
+        <div className="featuredItem" onClick={handleClick}>
+         
+          <Link to="/listMetro">
           <img
             src="https://images.pexels.com/photos/2790396/pexels-photo-2790396.jpeg?auto=compress&cs=tinysrgb&w=1600"
             alt=""
             className="featuredImg"
-          />
+          /></Link>
           <div className="featuredTitles">
             <h1>Train</h1>
-            <h2>+ 532</h2>
+            <h2 className="Fnum">+ 532</h2>
           </div>
         </div>
-      </Link>
+      
     </div>
   );
 };
