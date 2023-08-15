@@ -1,8 +1,10 @@
 import "./searchItemTrain.css";
+import { Link } from "react-router-dom";
 
 const SearchItem = () => {
   return (
-    <div className="searchItem">
+    
+    <div className="searchItem" >
       <img
         src="https://images.pexels.com/photos/1793503/pexels-photo-1793503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         alt=""
@@ -24,12 +26,16 @@ const SearchItem = () => {
         </span>
       </div>
       <div className="siDetails">
+       <Link to="/details">
         <div className="siDetailTexts">
           <button className="siCheckButton">See availability</button>
         </div>
+        </Link>
       </div>
     </div>
+ 
   );
 };
+
 
 export default SearchItem;

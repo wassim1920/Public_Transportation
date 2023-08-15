@@ -6,8 +6,10 @@ import { DateRange } from "@mui/icons-material";
 import { format } from "date-fns";
 import { faBed, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useFetch from "../../hooks/fetch";
 
 const ListMetro = () => {
+  const {data}=useFetch("http://127.0.0.1:8000/metros")
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
@@ -65,14 +67,10 @@ const ListMetro = () => {
       </div>
       <div className="listContainer">
         <div className="listWrapper">
-          <SearchItemMetro />
-          <SearchItemMetro />
-          <SearchItemMetro />
-          <SearchItemMetro />
-          <SearchItemMetro />
-          <SearchItemMetro />
-          <SearchItemMetro />
-          <SearchItemMetro />
+        {data.map((item) => (
+          <SearchItemMetro item={item} key={item._id}/>
+            ))}
+          
         </div>
       </div>
     </div>

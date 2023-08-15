@@ -1,6 +1,10 @@
 import "./searchItemMetro.css";
+import { Link} from "react-router-dom";
+import { useState} from "react";
 
-const SearchItemMetro = () => {
+const SearchItemMetro = ({item}) => {
+
+
   return (
     <div className="searchItem">
       <img
@@ -9,9 +13,9 @@ const SearchItemMetro = () => {
         className="siImg"
       />
       <div className="siDesc">
-        <h1 className="siTitle">Tower Street Apartments</h1>
-        <span className="siDistance">500m from center</span>
-        <span className="siTaxiOp">Free airport taxi</span>
+        <h1 className="siTitle">{item.name}</h1>
+        <h4 className="textPostion">Depart :<span className="siTaxiOp">{item.depart}</span></h4>
+        <h4 className="textPostion">Destination : <span className="siTaxiOp1"> {item.destination}</span></h4>
         <span className="siSubtitle">
           Studio Apartment with Air conditioning
         </span>
@@ -24,9 +28,11 @@ const SearchItemMetro = () => {
         </span>
       </div>
       <div className="siDetails">
+      <Link to={`/details/${item.id}`}>
         <div className="siDetailTexts">
-          <button className="siCheckButton">See availability</button>
+          <button className="siCheckButton">Details</button>
         </div>
+        </Link>
       </div>
     </div>
   );

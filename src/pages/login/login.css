@@ -1,6 +1,14 @@
 html {
   scroll-behavior: smooth;
 }
+
+.userImg{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 .lContainer {
   display: flex;
   justify-content: center;

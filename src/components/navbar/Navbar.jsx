@@ -19,7 +19,7 @@ const Navbar = () => {
 
   const handelLogout = () => {
     localStorage.removeItem("user");
-    navigate("/login");
+    navigate("/");
   };
   return (
     <div className="navbar">
@@ -33,6 +33,7 @@ const Navbar = () => {
             <Link to="/login" className="UserName">
               {user.username}{" "}
             </Link>
+            <div className="user-container">
             <div className="dropdown">
               <FontAwesomeIcon icon={faCaretDown} onClick={handleToggle} />
               {isOpen && (
@@ -43,21 +44,26 @@ const Navbar = () => {
                 </div>
               )}
             </div>
+            <Link to="/setting">
             {user.img ? (
+             
               <div>
-                <Link to="/setting">
+               
                   <img src={user.img} alt="img" className="userImg" />
-                </Link>
+                  
               </div>
+             
             ) : (
               <div>
-                <img
+                <img 
                   src="https://i.ibb.co/MBtjqXQ/no-avatar.gif"
                   alt="img"
                   className="userImg"
                 />
               </div>
             )}
+             </Link>
+          </div>
           </div>
         ) : (
           <div className="navItems">

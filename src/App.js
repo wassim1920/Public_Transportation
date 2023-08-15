@@ -20,7 +20,7 @@ function App() {
         <Route path="/list" element={<List />} />
         <Route path="/listMetro" element={<ListMetro />} />
         <Route path="/listTrain" element={<ListTrain />} />
-        <Route path="/details" element={<Card />} />
+        <Route path="/details/:id" element={<Card />} />
       </Routes>
     </BrowserRouter>
   );

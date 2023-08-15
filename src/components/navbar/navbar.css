@@ -14,6 +14,47 @@
   justify-content: center;
 }
 
+.userImg {
+  max-width: 50px; /* Ajustez la taille de l'image selon vos besoins */
+  height: auto;
+  margin-right: 10px; /* Espacement entre l'image et le dropdown */
+}
+
+.dropdown {
+  position: relative;
+  left: 170%;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Place le dropdown sous l'icône */
+  right: 0; /* Positionne le dropdown à droite de l'icône */
+  display: block;
+  background-color: white; /* Couleur de fond du dropdown */
+  border: 1px solid #9b3030; /* Bordure du dropdown */
+  box-shadow: 0 2px 4px rgba(188, 186, 186, 0.1); /* Ombre du dropdown */
+  z-index: 1000; /* Assure la superposition au-dessus du contenu */
+}
+
+.dropdown-item {
+  padding: 8px 15px; /* Espacement intérieur des éléments du menu */
+  color: white; /* Couleur du texte */
+  text-decoration: none;
+  display: block;
+  position: absolute;
+}
+
+.dropdown-item:hover {
+  background-color: #9b3030; /* Couleur de fond au survol */
+  color: white; /* Couleur du texte au survol */
+}
+
+
+.user-container {
+  display: flex;
+  align-items: center;
+}
+
 .navContainer {
   width: 100%;
   max-width: 1024px;

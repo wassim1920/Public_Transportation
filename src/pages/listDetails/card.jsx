@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import "./card.css";
 import Navbar from "../../components/navbar/Navbar";
+import useFetch from "../../hooks/fetch";
+import { useLocation } from "react-router-dom";
+
 
 const Card = () => {
-  const [comments, setComments] = useState([
+
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const {data , error} = useFetch(`http://127.0.0.1:8000/get/${id}/`)
+  
+   const [comments, setComments] = useState([
     {
       user: "John Doe",
       avatar:
@@ -53,19 +61,13 @@ const Card = () => {
             />
           </div>
           <div className="caDesc">
-            <h1 className="caTitle">Tower Street Apartments</h1>
-            <span className="caDistance">500m from center</span>
-            <span className="caTaxiOp">Free airport taxi</span>
+            <h1 className="caTitle">{data.name}</h1>
+            <span className="caDistance">{data.depart} to {data.destination}</span> 
+            <span className="caTaxiOp">{data.stations}</span>
             <span className="caSubtitle">
-              Studio Apartment with Air conditioning
+              {data.working_hours}
             </span>
-            <span className="caFeatures">
-              Entire studio • 1 bathroom • 21m² 1 full bed
-            </span>
-            <span className="caCancelOp">Free cancellation</span>
-            <span className="caCancelOpSubtitle">
-              You can cancel later, so lock in this great price today!
-            </span>
+            <span className="caCancelOp">Tarrrriiiiif</span>
           </div>
         </div>
         <div className="commentSection">

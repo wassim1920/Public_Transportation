@@ -13,6 +13,10 @@
   object-fit: cover;
 }
 
+.textPostion{
+ display: flex;
+}
+
 .siDesc {
   display: flex;
   flex-direction: column;
@@ -32,6 +36,17 @@
 .siTaxiOp {
   font-size: 12px;
   background-color: #008009;
+  color: white;
+  width: max-content;
+  padding: 3px;
+  border-radius: 5px;
+  display: flex;
+}
+
+.siTaxiOp1 {
+  display: flex;
+  font-size: 12px;
+  background-color: #ed4c00;
   color: white;
   width: max-content;
   padding: 3px;

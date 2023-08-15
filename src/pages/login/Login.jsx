@@ -3,8 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./login.css";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faMobile } from "@fortawesome/free-solid-svg-icons";
+
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -25,10 +24,10 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post(
-        "https://booking-aku5.onrender.com/api/auth/login",
+        "http://127.0.0.1:8000/login",
         credentials
       );
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       navigate("/");
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
