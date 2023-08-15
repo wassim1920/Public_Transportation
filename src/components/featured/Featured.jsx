@@ -5,16 +5,9 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Featured = () => {
   const {user}= useContext(AuthContext);
-  const [open, setOpen] = useState(false);
   const navigate = useNavigate()
 
-  const handleClick = ()=>{
-    if(user){
-      setOpen(true)
-    }else{
-      navigate("/login")
-    }
-  }
+
 
 
   return (
@@ -62,20 +55,19 @@ const Featured = () => {
         with a free Lamabooking account
       </h6>
       
-        <div className="featuredItem" onClick={handleClick}>
-         
-          <Link to="/listMetro">
+        <div className="featuredItem" >
+          
           <img
             src="https://images.pexels.com/photos/2790396/pexels-photo-2790396.jpeg?auto=compress&cs=tinysrgb&w=1600"
             alt=""
             className="featuredImg"
-          /></Link>
+          />
           <div className="featuredTitles">
             <h1>Train</h1>
             <h2 className="Fnum">+ 532</h2>
           </div>
         </div>
-      
+        
     </div>
   );
 };
